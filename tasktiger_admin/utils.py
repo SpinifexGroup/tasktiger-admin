@@ -12,6 +12,8 @@ from tasktiger_admin import TaskTigerView
 @click.option('-a', '--password', help='Redis password')
 @click.option('-n', '--db', help='Redis database number')
 @click.option('-l', '--listen', help='Admin port to listen on')
+@click.option('-i', '--interface', help='Admin interface to listen on',
+              default='127.0.0.1')
 def run_admin(host, port, db, password, listen):
     conn = redis.Redis(
         host, int(port or 6379), int(db or 0), password, decode_responses=True
@@ -22,4 +24,4 @@ def run_admin(host, port, db, password, listen):
     admin.add_view(
         TaskTigerView(tiger, name='TaskTiger', endpoint='tasktiger')
     )
-    app.run(debug=True, port=int(listen or 5000))
+    app.run(debug=True, port=int(listen or 5000), host=interface)
