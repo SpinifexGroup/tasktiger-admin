@@ -22,6 +22,6 @@ def run_admin(host, port, db, password, listen, interface):
     app = Flask(__name__)
     admin = Admin(app, url='/')
     admin.add_view(
-        TaskTigerView(tiger, name='TaskTiger', endpoint='tasktiger')
+        TaskTigerView(tiger, name='TaskTiger', endpoint='tasktiger', integration_config=[])
     )
     app.run(debug=True, port=int(listen or 5000), host=interface)
