@@ -14,7 +14,7 @@ from tasktiger_admin import TaskTigerView
 @click.option('-l', '--listen', help='Admin port to listen on')
 @click.option('-i', '--interface', help='Admin interface to listen on',
               default='127.0.0.1')
-def run_admin(host, port, db, password, listen):
+def run_admin(host, port, db, password, listen, interface):
     conn = redis.Redis(
         host, int(port or 6379), int(db or 0), password, decode_responses=True
     )
